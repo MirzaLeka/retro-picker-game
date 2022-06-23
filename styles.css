@@ -1,0 +1,72 @@
+.active-button {
+  background: #007BFF;
+  color: #FFF;
+  box-sizing: border-box;
+  border: none;
+  height: 2rem;
+  cursor: pointer;
+}
+
+.disabled-button {
+  cursor: default !important;
+  background: gray;
+  color: #FFF;
+  box-sizing: border-box;
+  border: none;
+  height: 2rem;
+}
+
+.crossed-out {
+  text-decoration: line-through;
+}
+
+.text-error {
+  color: #D50000;
+  display: none;
+  margin: 1rem 0 0 0;
+}
+
+.add-players-input {
+  height: 2rem;
+  outline: none;
+  border: none;
+  border-bottom: 1px solid #007BFF;
+  width: 50%;
+}
+
+.add-players-input:active {
+  outline: none;
+  border: none;
+  border-bottom: 1px solid #007BFF;
+}
+
+.container {
+  display: none;
+  margin-top: 2rem;
+  height: 90vh;
+}
+
+.get-combination {
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: column;
+  height: 70vh;
+}
+
+#readyBtn {
+  margin-top: 1.5rem;
+  width: 4rem;
+}
+
+#playersTitle {
+  display: none;
+  margin: 1rem 0 0 0;
+}
+
+#gameSetup {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 90vh;
+}
