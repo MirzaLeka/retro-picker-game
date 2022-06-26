@@ -1,7 +1,7 @@
 import { updatePlayers, toggleButton, changeLayout } from './ui-changes.js';
 import { getRemainingPeople, getRandomPerson } from './filters.js';
 
-let pickersList = [];
+let challengersList = [];
 let performersList = [];
 let previousPerformersList = [];
 
@@ -24,19 +24,19 @@ const errorElement = document.getElementById('inputError');
 
 function addPlayers(inputElement) {
 
-  const existingPlayers = pickersList.map(picker => picker.toLowerCase());
+  const existingPlayers = challengersList.map(challenger => challenger.toLowerCase());
 
   if (existingPlayers.includes(inputElement.value.toLowerCase())) {
     handleErrors('Please avoid adding duplicate players');
     return;
   }
 
-  pickersList.push(inputElement.value);
-  pickersList.sort();
-  performersList = [...pickersList];
+  challengersList.push(inputElement.value);
+  challengersList.sort();
+  performersList = [...challengersList];
 
   toggleButton(document.getElementById('readyBtn'), true);
-  updatePlayers(null, null, pickersList, performersList);
+  updatePlayers(null, null, challengersList, performersList);
 
   document.getElementById('playersTitle').style.display = 'block'
   inputElement.value = '';
@@ -44,42 +44,42 @@ function addPlayers(inputElement) {
 
 function startGame() {
 
-  if (!pickersList.length) {
+  if (!challengersList.length) {
     return;
   }
 
-  if (pickersList.length < 2) {
+  if (challengersList.length < 2) {
     handleErrors('You need at least two players to start');
     return;
   }
 
   changeLayout();
-  document.querySelector('#pickBtn').addEventListener('click', () => pickCombination())
+  document.querySelector('#pickBtn').addEventListener('click', () => challenge())
 }
 
-function pickCombination() {
+function challenge() {
 
-  const picker = getRandomPerson(pickersList);
-  const remainingPickers = getRemainingPeople(pickersList, picker);
-  const performersWithoutPickerList = getRemainingPeople(performersList, picker); // so that you cannot pick yourself
+  const challenger = getRandomPerson(challengersList);
+  const remainingchallengers = getRemainingPeople(challengersList, challenger);
+  const performersWithoutchallengerList = getRemainingPeople(performersList, challenger); // so that you cannot pick yourself
 
-  const performer = getRandomPerson(performersWithoutPickerList);
-  const remainingPerformers = getRemainingPeople(performersWithoutPickerList, performer);
+  const performer = getRandomPerson(performersWithoutchallengerList);
+  const remainingPerformers = getRemainingPeople(performersWithoutchallengerList, performer);
 
-  pickersList = [...remainingPickers];
+  challengersList = [...remainingchallengers];
   performersList = [...remainingPerformers];
 
-  if (!previousPerformersList.includes(picker)) {
-    performersList.push(picker)
+  if (!previousPerformersList.includes(challenger)) {
+    performersList.push(challenger)
     performersList.sort();
   }
 
-  if (!pickersList.length) {
+  if (!challengersList.length) {
     toggleButton(document.getElementById('pickBtn'), false);
   }
 
   previousPerformersList.push(performer);
-  updatePlayers(picker, performer, pickersList, performersList);
+  updatePlayers(challenger, performer, challengersList, performersList);
 }
 
 function handleErrors(errorMessage) {

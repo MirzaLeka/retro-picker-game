@@ -33,6 +33,7 @@ function generateList(list, element) {
 }
 
 function displayResults(picker, performer) {
-  document.querySelector('#combination').innerHTML += `<li>Picker: ${picker}, Performer: ${performer}</li>`;
+  alert(`Challenger: ${picker}, Performer: ${performer}`);
+  document.querySelector('#combination').innerHTML += `<li>Challenger: ${picker}, Performer: ${performer}</li>`;
 }
 
